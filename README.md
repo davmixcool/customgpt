@@ -175,7 +175,7 @@ Always check for presence of `err`.  If `err` is not null, then the response mig
 
 ## Methods
 
-With an customgpt object, just await one of the following methods to interact with the CustomGPT serivce:
+With a customgpt object, just await one of the following methods to interact with the CustomGPT serivce:
 
 
 ### `create_collection(collection_name)`
