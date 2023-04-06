@@ -13,7 +13,7 @@ CustomGPT client library for nodejs. You need the customgpt service running to u
 
 ## Quick Start
 
-Then you can use it in your project:
+Use it in your project:
 
 ```javascript
 const { CustomGPT } = require("@davmixcool/customgpt")
@@ -42,7 +42,7 @@ if (collection.err) {
 
 ```
 
-Next we create a document source to train customGPT with our data
+Next we train customGPT with our data.
 
 
 ```javascript
@@ -52,11 +52,13 @@ let payload = {
     content: `My quest for a good SEO meta tag implementation in Laravel drove me tech mad to write a package that will add standard SEO meta tags to my application with ease. However, I had to go the extra mile to research important meta tags and the role they play when it comes to SEO and how they can be used to improve SEO, So literally I had to do most of the heavy lifting. Lets quickly take a detour to what meta tags are and how they can improve SEO before we unveil the package.`,
     tags: ['SEO'] //An array of tags used to categorise the document
 }
-let doc = await customgpt.create_document(payload);
-if (doc.err) {
-    console.error(doc.err);
+let training = await customgpt.start_training(payload);
+if (training.err) {
+    console.error(training.err);
 } else {
-    console.log(doc.response);
+    console.log(training.response);
+    //A document id is returned used to update and manange training
+    //
     // {
     // "id": "c26b16b4-d394-11ed-b5a3-33d8a09a24e3"
     // }
@@ -64,7 +66,7 @@ if (doc.err) {
 
 ```
 
-We can also update a document source with it's id
+We can also update a training source with it's id
 
 ```javascript
 
@@ -73,11 +75,11 @@ let payload = {
     content: `My quest for a good SEO meta tag implementation in Laravel drove me tech mad to write a package that will add standard SEO meta tags to my application with ease. However, I had to go the extra mile to research important meta tags and the role they play when it comes to SEO and how they can be used to improve SEO, So literally I had to do most of the heavy lifting. Lets quickly take a detour to what meta tags are and how they can improve SEO before we unveil the package. Why do meta tags matter? As previously mentioned, meta tags offer more details about your site to search engines and website visitors who encounter your site in the SERP. They can be optimized to highlight the most important elements of your content and make your website stand out in search results. Search engines increasingly value good user experience, and that includes making sure that your site satisfies a user’s query as best as it possibly can. Meta tags help with this by making sure that the information searchers need to know about your site is displayed upfront in a concise and useful fashion.`,
     tags: ['SEO',"Meta"] //An array of tags used to categorise the document
 }
-let doc = await customgpt.update_document(payload);
-if (doc.err) {
-    console.error(doc.err);
+let training = await customgpt.update_training(payload);
+if (training.err) {
+    console.error(training.err);
 } else {
-    console.log(doc.response);
+    console.log(training.response);
     // {
     // "id": "c26b16b4-d394-11ed-b5a3-33d8a09a24e3"
     // }
@@ -86,7 +88,7 @@ if (doc.err) {
 ```
 
 
-We can then chat with our document source once it has been created 
+We can then chat with our trained data
 
 
 ```javascript
@@ -99,7 +101,7 @@ let payload = {
     top: 10, //The number of vector embeddings used to form a context. A lower number between 5 - 10 gives a more specific answer. Defaults to 5.
     instruction: "You are an AI assistant, a creative business assistant that completes requests and always formats his responses in HTML. You are my friendly business AI assistant that is very informative & creative and can provide advice or complete creative tasks that I request. You use the information in the knowledge base as context if relevant. When you respond to me, your answer must be formatted in HTML so it is easier to read with paragraph tags, line breaks, heading and bold for titles, and use lists or tables when applicable." //An instruction to tell the AI how to reply
 }
-let chat = await customgpt.chat_collection(payload);
+let chat = await customgpt.chat(payload);
 if (chat.err) {
     console.error(chat.err);
 } else {
@@ -145,17 +147,17 @@ if (collection.err) {
 ```
 
 
-## Delete a Document Source
+## Delete a Training Source
 
 ```javascript
 
-//Supply the collection id to delete
-let doc = await customgpt.delete_document("c26b16b4-d394-11ed-b5a3-33d8a09a24e3");
+//Supply the document id to delete
+let training = await customgpt.delete_training("c26b16b4-d394-11ed-b5a3-33d8a09a24e3");
 
-if (doc.err) {
-    console.error(doc.err);
+if (training.err) {
+    console.error(training.err);
 } else {
-    console.log(doc.response);
+    console.log(training.response);
     // {
     // "message": "Deleted succcessfully"
     // }
@@ -173,16 +175,17 @@ Always check for presence of `err`.  If `err` is not null, then the response mig
 
 ## Methods
 
-With an qdrant object, just await one of the following methods to interact with the engine and its collections:
+With an customgpt object, just await one of the following methods to interact with the CustomGPT serivce:
+
 
 ### `create_collection(collection_name)`
 
 Creates a new collection with `collection_name`
 
 
-### `chat_collection(payload)`
+### `chat(payload)`
 
-Chats a collection with a `payload`
+Chat your trained data with a `payload`
 
 ```js
 let payload = {
@@ -196,9 +199,9 @@ let payload = {
 ```
 
 
-### `search_collection(payload)`
+### `search(payload)`
 
-Search a collection with a `payload`
+Search your trained data with a `payload`
 
 ```js
 let payload = {
@@ -213,12 +216,12 @@ let payload = {
 
 ### `delete_collection(collection_id)`
 
-Deletes a collection with the `collection_id`
+Deletes a collection and all its trained data with the `collection_id`
 
 
-### `create_document(payload)`
+### `start_training(payload)`
 
-Creates a document source with a `payload`
+Trains CustomGPT with your data
 
 ```js
 let payload = {
@@ -228,10 +231,9 @@ let payload = {
 }
 ```
 
+### `update_training(payload)`
 
-### `update_document(payload)`
-
-Update a document source with a `payload`
+Updates training source
 
 ```js
 let payload = {
@@ -242,15 +244,15 @@ let payload = {
 ```
 
 
-### `get_document(document_id)`
+### `get_training(document_id)`
 
-Gets a document and its embeddings with the `document_id`
+Gets the embeddings of a training with the `document_id`
 
 
 
-### `delete_document(document_id)`
+### `delete_training(document_id)`
 
-Deletes a document with the `document_id`
+Deletes a training with the `document_id`
 
 
 ### Maintainers
