@@ -66,7 +66,7 @@ if (training.err) {
 
 ```
 
-We can also update a training source with it's id
+We can also update a training with it's document id
 
 ```javascript
 
@@ -147,7 +147,7 @@ if (collection.err) {
 ```
 
 
-## Delete a Training Source
+## Delete a Training
 
 ```javascript
 
