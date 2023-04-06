@@ -1,0 +1,31 @@
+{
+  "name": "@davmixcool/customgpt",
+  "version": "1.0.0",
+  "description": "CustomGPT client library for nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davmixcool/customgpt.git"
+  },
+  "keywords": [
+    "qdrant",
+    "search",
+    "gpt",
+    "chatgpt",
+    "embeddings"
+  ],
+  "contributors": [
+    "David Oti <hello@davidoti.com>"
+  ],
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/davmixcool/customgpt/issues"
+  },
+  "homepage": "https://github.com/davmixcool/customgpt#readme",
+  "dependencies": {
+    "node-fetch": "^2.6.9"
+  }
+}
