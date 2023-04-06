@@ -11,11 +11,12 @@
     "url": "git+https://github.com/davmixcool/customgpt.git"
   },
   "keywords": [
-    "qdrant",
+    "vector",
     "search",
     "gpt",
     "chatgpt",
-    "embeddings"
+    "embeddings",
+    "customgpt"
   ],
   "contributors": [
     "David Oti <hello@davidoti.com>"
