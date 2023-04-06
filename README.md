@@ -3,7 +3,7 @@
 CustomGPT client library for nodejs. You need the customgpt service running to use this library. You can reach out to me privately at (hello@davidoti.com) to purchase a licence.
 
 ## Features
-* Train CustomGPT with your data
+* Train ChatGPT with your data
 * Supports Clip vision (Can detect image links in your content)
 
 ## Install
