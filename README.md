@@ -183,6 +183,47 @@ With a customgpt object, just await one of the following methods to interact wit
 Creates a new collection with `collection_name`
 
 
+### `delete_collection(collection_id)`
+
+Deletes a collection and all its trained data with the `collection_id`
+
+
+### `start_training(payload)`
+
+Trains CustomGPT with your data
+
+```js
+let payload = {
+    collection_id: "",//The collection to create the document in
+    content: "", //The content to train CustomGPT on
+    tags: [""], //An optional array of tags used to categorise your document source
+}
+```
+
+
+### `update_training(payload)`
+
+Updates training source
+
+```js
+let payload = {
+    document_id: "",//The document source to update
+    content: "", //The content to train CustomGPT on
+    tags: [""], //An optional array of tags used to categorise your document source
+}
+```
+
+
+### `get_training(document_id)`
+
+Gets the embeddings of a training with the `document_id`
+
+
+### `delete_training(document_id)`
+
+Deletes a training with the `document_id`
+
+
 ### `chat(payload)`
 
 Chat your trained data with a `payload`
@@ -213,46 +254,6 @@ let payload = {
 }
 ```
 
-
-### `delete_collection(collection_id)`
-
-Deletes a collection and all its trained data with the `collection_id`
-
-
-### `start_training(payload)`
-
-Trains CustomGPT with your data
-
-```js
-let payload = {
-    collection_id: "",//The collection to create the document in
-    content: "", //The content to train CustomGPT on
-    tags: [""], //An optional array of tags used to categorise your document source
-}
-```
-
-### `update_training(payload)`
-
-Updates training source
-
-```js
-let payload = {
-    document_id: "",//The document source to update
-    content: "", //The content to train CustomGPT on
-    tags: [""], //An optional array of tags used to categorise your document source
-}
-```
-
-
-### `get_training(document_id)`
-
-Gets the embeddings of a training with the `document_id`
-
-
-
-### `delete_training(document_id)`
-
-Deletes a training with the `document_id`
 
 
 ### Maintainers
