@@ -14,10 +14,16 @@ const body_request = async (url,body,apiKey,method) => {
 
     if (body) fetch_spec.body = JSON.stringify(body);
 
-    let response = await fetch(url, fetch_spec);
-
     try {
+        let response = await fetch(url, fetch_spec);
         const output = await response.json();
+        const { error, message } = output;
+        if(error){
+            const { status } = error;
+            if (status >= 400) {
+                throw new Error(message)
+            }
+        }
         return [null,output];
     } catch(ex) {
         const output = null;
@@ -37,10 +43,17 @@ const url_request = async (url,params,apiKey) => {
         }
     };
 
-    let response = await fetch(url,fetch_spec);
-
+    
     try {
+        let response = await fetch(url,fetch_spec);
         const output = await response.json();
+        const { error, message } = output;
+        if(error){
+            const { status } = error;
+            if (status >= 400) {
+                throw new Error(message)
+            }
+        }
         return [null,output];
     } catch(ex) {
         const output = null;
