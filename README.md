@@ -18,7 +18,11 @@ Use it in your project:
 ```javascript
 const { CustomGPT } = require("@davmixcool/customgpt")
 
-const customgpt = new CustomGPT("http://localhost:3000/");
+const customgpt = new CustomGPT({
+    key: "YOUR API KEY",
+    host: "http://localhost:3000/"
+});
+
 ```
 
 ## Train CustomGPT with your data

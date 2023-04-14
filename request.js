@@ -1,13 +1,14 @@
 const fetch = require("node-fetch");
 
-const body_request = async (url,body,method) => {
+const body_request = async (url,body,apiKey,method) => {
     method = method || "POST";
 
     let fetch_spec = {
         method: method,
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${apiKey}`
         }
     };
 
@@ -24,12 +25,19 @@ const body_request = async (url,body,method) => {
     }
 }
 
-const url_request = async (url,params) => {
+const url_request = async (url,params,apiKey) => {
     if (params) {
         url += "?" + new URLSearchParams(params).toString();
     }
 
-    let response = await fetch(url);
+    let fetch_spec = {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${apiKey}`
+        }
+    };
+
+    let response = await fetch(url,fetch_spec);
 
     try {
         const output = await response.json();
@@ -39,7 +47,6 @@ const url_request = async (url,params) => {
         return [ex,output];
     }
 }
-
 
 module.exports = { 
     url_request,
