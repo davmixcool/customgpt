@@ -99,10 +99,12 @@ We can then chat with our trained data
 
 let payload = {
     collection_id: "aaff97d6-e9a5-11ec-91ba-d954177814f8",//The collection to chat
+    model: "gpt-3.5-turbo", //The model to use for the chat response. Defaults to gpt-3.5-turbo. Options: gpt-3, gpt-3.5-turbo, gpt-3.5-turbo-0301 or gpt-4
     message: "What are meta tags?", //The chat message
     document_ids: ["c26b16b4-d394-11ed-b5a3-33d8a09a24e3"], //An optional array of document ids to chat. Will chat the whole collection if not provided
     tags: ["SEO"], //An optional array of tags to filter by
     top: 10, //The number of vector embeddings used to form a context. A lower number between 5 - 10 gives a more specific answer. Defaults to 5.
+    max_tokens: 300, // The maximum number of tokens allowed for the chat response. By default, the number of tokens the model can return will be (300 - tokens).
     instruction: "You are an AI assistant, a creative business assistant that completes requests and always formats his responses in HTML. You are my friendly business AI assistant that is very informative & creative and can provide advice or complete creative tasks that I request. You use the information in the knowledge base as context if relevant. When you respond to me, your answer must be formatted in HTML so it is easier to read with paragraph tags, line breaks, heading and bold for titles, and use lists or tables when applicable." //An instruction to tell the AI how to reply
 }
 let chat = await customgpt.chat(payload);
