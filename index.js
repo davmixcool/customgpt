@@ -23,22 +23,22 @@ CustomGPT.prototype.delete_collection = async function(id) {
 }
 
 CustomGPT.prototype.start_training = async function(payload) {
-	let url = `${this.host}v1/document/create`;
+	let url = `${this.host}v1/source/create`;
 	return new CustomGPTResponse(await body_request(url,payload,this.apiKey,'POST'));
 }
 
 CustomGPT.prototype.update_training = async function(payload) {
-	let url = `${this.host}v1/document/update`;
+	let url = `${this.host}v1/source/update`;
 	return new CustomGPTResponse(await body_request(url,payload,this.apiKey,'PUT'));
 }
 
 CustomGPT.prototype.get_training = async function(id) {
-	let url = `${this.host}v1/document/fetch?document_id=${id}`;
+	let url = `${this.host}v1/source/fetch?source_id=${id}`;
 	return new CustomGPTResponse(await url_request(url,null,this.apiKey));
 }
 
 CustomGPT.prototype.delete_training = async function(id) {
-	let url = `${this.host}v1/document/delete?document_id=${id}`;
+	let url = `${this.host}v1/source/delete?source_id=${id}`;
 	return new CustomGPTResponse(await body_request(url,null,this.apiKey,'DELETE'));
 }
 
