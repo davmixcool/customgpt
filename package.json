@@ -1,6 +1,6 @@
 {
   "name": "@davmixcool/customgpt",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "CustomGPT client library for nodejs",
   "main": "index.js",
   "scripts": {

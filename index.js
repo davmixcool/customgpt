@@ -43,12 +43,12 @@ CustomGPT.prototype.delete_training = async function(id) {
 }
 
 CustomGPT.prototype.search = async function(payload) {
-	let url = `${this.host}v1/collection/search`;
+	let url = `${this.host}v1/source/search`;
 	return new CustomGPTResponse(await body_request(url,payload,this.apiKey,'POST'));
 }
 
 CustomGPT.prototype.chat = async function(payload) {
-	let url = `${this.host}v1/collection/chat`;
+	let url = `${this.host}v1/source/chat`;
 	return new CustomGPTResponse(await body_request(url,payload,this.apiKey,'POST'));
 }
 
