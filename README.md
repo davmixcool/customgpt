@@ -232,6 +232,18 @@ Gets the embeddings of a training with the `source_id`
 Deletes a training with the `source_id`
 
 
+### `delete_batch_training(payload)`
+
+Deletes a batch training using a `collection_id` and the training `source_ids` in a payload
+
+```js
+let payload = {
+    collection_id: "",//The collection
+    source_ids: [""], //An array of source ids
+}
+```
+
+
 ### `chat(payload)`
 
 Chat your trained data with a `payload`

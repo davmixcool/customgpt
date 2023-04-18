@@ -42,6 +42,11 @@ CustomGPT.prototype.delete_training = async function(id) {
 	return new CustomGPTResponse(await body_request(url,null,this.apiKey,'DELETE'));
 }
 
+CustomGPT.prototype.delete_batch_training = async function(payload) {
+	let url = `${this.host}v1/source/delete/batch`;
+	return new CustomGPTResponse(await body_request(url,payload,this.apiKey,'DELETE'));
+}
+
 CustomGPT.prototype.search = async function(payload) {
 	let url = `${this.host}v1/source/search`;
 	return new CustomGPTResponse(await body_request(url,payload,this.apiKey,'POST'));
