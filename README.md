@@ -5,7 +5,7 @@ CustomGPT client library for nodejs. You need the customgpt service running to u
 ## Features
 * Train ChatGPT with your data
 * Supports Clip vision (Can detect image links in your content)
-* Supports GPT-3, GPT-3.5 and GPT-4 models
+* Supports text-davinci-003, text-davinci-002, gpt-3.5-turbo and gpt-4 models
 
 ## Install
 
